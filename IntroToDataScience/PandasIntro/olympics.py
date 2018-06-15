@@ -47,9 +47,9 @@ def answer_two():
 # (Summer Gold−Winter Gold)/Total Gold
 # Only include countries that have won at least 1 gold in both summer and winter.
 def answer_three():
-    summer_gold = df['Gold']
-    winter_gold = df['Gold.1']
-    return "YOUR ANSWER HERE"
+    df_gold = df[(df['Gold'] > 0) & (df['Gold.1'] > 0)]
+    relative_max = ((df_gold['Gold'] - df_gold['Gold.1'])/df_gold['Gold.2']).idxmax()
+    return relative_max
 
 
-print(answer_two())
+print(answer_three())
