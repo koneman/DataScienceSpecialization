@@ -53,5 +53,12 @@ country_df = country_df[country_df["Rank"] <= 15]
 def answer_one():
     return country_df
 
+# The previous question joined three datasets then reduced this to just the top 15 entries.
+# When you joined the datasets, but before you reduced this to the top 15 items, how many entries did you lose?
+def answer_two():
+    # subtract full merge from intersection
+    full_df = pd.merge(pd.merge(energy, GDP, on='Country', how='outer'), ScimEn, on='Country', how='outer')
+    intersect_df = pd.merge(pd.merge(energy, GDP, on='Country'), ScimEn, on='Country')
+    return len(full_df) - len(intersect_df)
 
-print(answer_one())
+print(answer_two())
